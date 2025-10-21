@@ -1,2 +1,2 @@
-1.Streamlit
-2.Matplotlib
+streamlit
+matplotlib
