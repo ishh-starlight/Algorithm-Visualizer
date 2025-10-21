@@ -3,11 +3,11 @@ import random
 import matplotlib.pyplot as plt
 import time
 
-# --- Streamlit Setup ---
+#Streamlit Setup
 st.set_page_config(page_title="Sorting Visualizer", layout="wide")
 st.title("🎨 Sorting Algorithm Visualizer")
 
-# --- Sidebar Controls ---
+#Sidebar Controls
 algo = st.sidebar.selectbox(
     "Select Sorting Algorithm",
     ["Bubble Sort", "Selection Sort", "Insertion Sort", "Merge Sort", "Quick Sort"]
@@ -15,7 +15,7 @@ algo = st.sidebar.selectbox(
 size = st.sidebar.slider("Array Size", 5, 30, 10)
 speed_option = st.sidebar.selectbox("Select Speed", ["🐢 Slow", "⚙️ Medium", "⚡ Fast"])
 
-# --- Speed delay ---
+#Speed delay
 if "Slow" in speed_option:
     delay = 3.0
 elif "Medium" in speed_option:
@@ -26,15 +26,15 @@ else:
 arr = [random.randint(10, 100) for _ in range(size)]
 start_btn = st.sidebar.button("Start Visualization")
 
-# --- Layout: side-by-side columns ---
-col1, col2 = st.columns([2, 1])  # chart 2x wider than log
+# Layout
+col1, col2 = st.columns([2, 1])  
 
 plot_placeholder = col1.empty()
 log_placeholder = col2.empty()
 
-# --- Plot Function ---
+
 def plot_array(arr, color_positions=None):
-    fig, ax = plt.subplots(figsize=(6, 3))  # smaller figure size
+    fig, ax = plt.subplots(figsize=(6, 3))  
     bars = ax.bar(range(len(arr)), arr, color="skyblue")
 
     if color_positions:
@@ -50,7 +50,7 @@ def plot_array(arr, color_positions=None):
     plot_placeholder.pyplot(fig, use_container_width=True)
     plt.close(fig)
 
-# --- Sorting Algorithms ---
+#Sorting Algorithms
 def bubble_sort(arr):
     steps = []
     n = len(arr)
@@ -128,7 +128,7 @@ def quick_sort(arr, low=0, high=None, steps=None):
             yield arr, pos, s
         yield from quick_sort(arr, low, high - 1, steps)
 
-# --- Main Logic ---
+# Main Logic
 if start_btn:
     working_arr = arr.copy()
     log_lines = []
